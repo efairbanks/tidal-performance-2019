@@ -1,0 +1,32 @@
+--[[
+dofile('main.cybin')
+--]]
+
+require 'cybin'
+m=Metro{cps=130/240}
+sdrums='./samples/pdrums_loop/DRUMS_130__10_1.wav'
+sbass='./samples/pgrowl_loop/GROWL_130__1_4.wav'
+drums=Poly{voice=Sampler,maxVoices=1}
+bass=Poly{voice=Sampler,maxVoices=1}
+f=Filter{freq=4000}
+function play() end
+m('play')
+
+m.cps=130/240
+function play()   
+   m(P{0},
+      function(x,s,e)
+	 drums{sample=sdrums,offset=x/8}
+   end)
+   m(P{0,1,0,3},
+      function(x,s,e)
+	 bass{sample=sbass,offset=x/8}
+   end)
+end
+
+function __process()
+   local out=drums:Process()+bass:Process()
+   m:Process()
+   out=math.atan(out*1)
+   return out,out
+end

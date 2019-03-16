@@ -1,0 +1,504 @@
+------ericfairbanks.org-----
+hush
+----------------------------
+d9 $ s "veda*30"
+----------------------------
+bpm 110 -- moom
+bpm 130 -- houz
+bpm 150 -- dnbz
+----------------------------
+
+hush
+
+d1
+  $ whenmods [1/2,1/4] [8] [7] (slowcat [tomfill, kksfill])
+  $ whenmodr [1,1/2,1/4] [8] [7] ((+ speed 1).(* release 0.5))
+  $ stack [
+      stut' 4 (3/32) ((+ coarse 4).(+ hcutoff 2000).(* gain 0.6))
+        $ s "plucklead"
+        +| note (karp (whenmodr [2,1,1/2,1/4,1/8] [8] [7] ((+ 3).(linger' "7 6 5 4 3 2 1 0" 1)) $ "[0 1 2 1 2 3 4 5]*2"))
+        |* legato 4,
+      ninvert 6 18 $ s "plucklead*8" + note keys,
+      (+ note "[0,12]") $ ninvert (-36) (-24) $ s "<plucklead ~>" + note key # legato 4,
+      "kick*4" # orbit 1,
+      risefall 4
+    ]
+
+
+
+d1
+  $ stack [
+    housep # orbit 1,
+    ninvert $s "plucklead()" - note 24 + note key # legato 1,
+    risefall 4,
+    s "[plucklead]*16" + note keys # hcutoff 500
+  ] + hcutoff 500 |+ swuph 4
+
+
+
+
+hush
+
+
+
+jump 1
+  $ solos ["plucklead"]
+  $ whenmodr [1,1/2,1/4] [8] [7] ((* release 0.5).(* speed 2))
+  $ stack [
+    dnbp # orbit 1,
+    s "varbass:16(5,16,2)" # legato 1,
+    s "plucklead(4,8,1)" + note "[0,3,7]",
+    risefall 4
+  ] + hcutoff 500
+
+
+clearnotes
+
+jump 1
+   -- $ whenmods [1/2,1/4,1/8,1/16] [4] [3] (slowcat [trapfill,tomfill,clapfill,fclapfill])
+   -- $ whenmodr [0.25,0.125] [8] [4] ((* speed 2).(* release 0.5))
+   $ stack [
+    housep # orbit 1,
+    s "plucklead*16" + note keys,
+    ninvert (-36) (-24) $ s "plucklead(4,8,1)" + note key,
+    risefall 4
+   ] + hcutoff 500 |+ swuph 4
+
+jump 1
+  $ stack [
+    dnbp # orbit 1,
+    s "varbass:16(7,16,2)" + note key # legato 1 + cutoff 2000,
+    s "plucklead(5,16)" + note keys
+  ]+ hcutoff 1500 |+ swuph 4
+
+
+
+
+
+
+
+
+
+
+------------CMPLXTRP------------
+
+jump 1
+  $ whenmods [1/2,1/4,1/8,1/16] [8] [7] (slowcat [trapfill,clapfill,fclapfill,tomfill])
+  $ whenmodr [1,1/2,1/4] [8] [7] ((* release 0.5).(* speed 2))
+  $ stack [
+    housep,
+    ninvert (-36) (-24) $ s "plucklead(4,8,1)" + note key,
+    ninvert (-6) 6 $ s "plucklead(5,16,2)" + note keys,
+    risefall 4
+  ]
+
+------------SNTHWV------------
+
+jump 1
+  $ stack [
+      (note (karp (foldEvery [2,3,4] (rev) "0 1 2 3 4 3 2 1"))) |+ s "f1lead",
+      ninvert (-36) (-24) $ s "plucklead" # legato 4 + note key,
+      "kick*4" # orbit 1,
+      "f1snare(2,4,1)" # orbit 1,
+      "sonhh*16" # hcutoff 10000,
+      risefall 4
+    ]
+
+-----------REGG-------------
+
+jump 1
+  $ whenmods [1,1/2,1/4] [8] [7] (slowcat [trapfill,kksfill,clapfill])
+  $ stack [
+    dnbp # orbit 1,
+    ninvert (-36) (-24) $ saturate 0.95 $ s "futuresub(8,16,2)" + note key,
+    risefall 4,
+    ninvert (-6) 6 $ s "plucklead(4,8,1)" + note keys
+  ]
+
+-----------FAWM--------------
+
+jump 1
+  $ every 1 (whenmods [1/4,1/8,1/16] [16] [15] (slowcat [trapfill,kksfill,clapfill]))
+  $ every 1 (whenmodr [1/2,1/4,1/8] [8] [7] ((* release 0.5).(* speed 2)))
+  $ stack [
+      housep,
+      risefall 4,
+      chl 8 1 $ s "pgrowl_loop" + n "<0 1 2 3 4 5 6 7>" + n "16",
+      chl 8 1 $ s "pchords_loop" + n "<0 1 2 3 4 5 6 7>" + n "0" * gain 0
+    ] + hcutoff 500 |+ swuph 4
+
+-----------38HS-------------
+
+jump 1
+  $ every 0 ((solos ["kick","donk","futuresub","f1fall"]).(+ hcutoff 400))
+  $ every 0 (whenmods [1/2,1/4,1/8,1/16] [8] [7] (slowcat [trapfill,kksfill,clapfill]))
+  $ stack [
+    dnbp # orbit 1,
+    whenmods [1,1/2,1/4,1/8] [8] [7] (s "donk*16" # swupl 1)
+      $ saturate 0.99 $ s "futuresub(<5 9 7 8>*1.5,16,2)" - note 24 * gain 0,
+    s "vibsawpluck(5,16,2)" + note "[0,3,-5]",
+    risefall 4
+  ]
+
+-------------LCTRO-------------
+
+jump 1
+  $ every 0 ((solos ["plucklead","kick"]).(|+ swupl 4).(+ hcutoff 300))
+  $ every 1 (whenmodr [1,1/2,1/4] [8] [7] ((linger' 0 "<0.5 0.25 0.75>").(+ hcutoff 500)))
+  $ stack [
+    s "kick*4" # orbit 1,
+    s "f1snare:0(2,4,1)" # orbit 1,
+    s "sonhh:1(4,8,1)",
+    saturate 0.95 $ s "varbass:16(7,16,2)" # legato 1 # cutoff 4000,
+    fast 2 $ s "plucklead(5,8,0)" + note "[0,3,7]" * legato 4 + hcutoff 500,
+    risefall 4
+  ]
+
+-------------SNCLCTRO---------------
+
+jump 1
+  $ every 0 ((solos ["sawpluck"]).(# hcutoff 400))
+  $ every 0 (whenmods [0.5,0.25,1/8] [8] [7] (slowcat [trapfill,tomfill,clapfill]))
+  $ every 0 (whenmodr [1,1/2,1/4] [4] [3] ((* speed "-1").(* legato 0.5)))
+  $ stack [
+      "varbass:18(6,16,2)" + note 12 * gain 0.9 # legato 1,
+      "sawpluck(7,16,2)" + note "[0,3,-5]" + note "[0,12]",
+      s "kick*4" # orbit 1,
+      s "f1snare:1(2,4,1)" # orbit 1,
+      s "sonhh*16" # hcutoff 12000,
+      n "<~ [~ ~ ~ [1 1]]>" |+ s "f1clap" # orbit 1,
+      risefall 4
+      ]
+
+------------HRDDNB--------------
+
+jump 1
+  $ every 0 ((solos ["kick","f1snare","futuresub"]).(|+ swupl 4).(|+ swuph 2))
+  $ whenmods [1/2,1/4,1/8] [8] [7] (slowcat [fclapfill,kksfill,tomfill,clapfill])
+  $ whenmodr [1,1/2,1/4,1/8] [8] [7] ((+ hcutoff 200).(* speed 2).(* release 0.5))
+  $ stack [
+      dnbp,
+      --whenmodr [1,1/2,1/4] [4] [3] (* speed 2) $ chl 8 1 $ "pgrowl_loop" + n "<0 1 2 3>" + n 16 * gain 0.8 * legato 0.75,
+      saturate 0.99 $ s "futuresub(7,16,2)" - note 30 # hcutoff 12,
+      s "plucklead(<5 5 5 7 5 5 5 8>,16,4)" + note "[0,3,7]",
+      (risefall 4) * gain 0.9
+      ] |+ swuph 4 |+ swdownl 2
+
+------------GRWLHRDCR-------------
+
+jump 1
+  $ stack [
+    housep,
+    risefall 4,
+    s "f1clap(1,8,6)",
+    whenmods [1,1/2,1/4] [8] [7] (s "varbass:4(<4 8 4>*1.5,4)" |+ n (slow (19/8) $ run 19) * gain 0.85 # legato 1)
+      $ s "donk(4,8,1)" * gain 0.8,
+    ninvert 14 36 $ s "plucklead(4,8,1)" + note "[0,3,7]" * gain 1.1
+    ]
+
+---------RGGLCTRO-----------
+
+d1
+  $ every 0 ((solos ["plucklead","kick","varbass"]).(+ hcutoff 300).(|+ swupl 2))
+  $ every 0 (whenmodr [2,1,0.5,0.25] [4] [3] ((* speed "<1 2 1>").(+ hcutoff 100).(focus 0 (1/2))))
+  $ stack [
+    housep,
+    s "jstrim:2(7,16,4)" * gain 0.7 # hcutoff 800,
+    saturate 0.99 $ s "futuresub(7,16,2)" - note 30,
+    s "varbass:18(9,16,2)" + note "[0,12,24]" * gain 0.85 # hcutoff 200 # legato 1,
+    saturate 0.97 $ s "plucklead(4,8,1)" + note "[0,3,7,24]",
+    risefall 4]
+
+-------------RISINGLCTRO---------------
+
+xfadeIn (1/4) 1
+  -- $ every 0 ((solos ["f1lead","f1snare","kick","varbass"]).(+ hcutoff 1500))
+  -- $ whenmodr [2,1,0.5,0.25,(1/8)] [4] [3] ((+ speed 1).(+ hcutoff 500).(* coarse 2).(* gain 0.78))
+  $ stack [
+      s "kick*4" # orbit 1,
+      s "f1snare:1(2,4,1)" # orbit 1,
+      s "sonhh:1*8" # hcutoff 6000,
+      whenmodr [1,0.5,0.25] [4] [3] (superimpose (jux $ (+ note "12"))) $ s "varbass:16(9,16,2)" # legato 1 |+ note "<0 1 2 3>*2",
+      isoe 7 13 16 $ "f1lead" + note 24,
+      chl 16 4 $ "f1fall" # hcutoff 1500
+      ] + hcutoff 20
+
+---------WHSTLHOUSE------------
+
+do
+  jump 1
+    $ whenmodr [1,0.5,0.25] [4] [3] ((+ hcutoff 100).(* speed 2))
+    $ stack [
+        s "kick*4" # orbit 1,
+        s "f1snare:1(2,4,1)" # orbit 1,
+        s "sonhh:1(4,8,1)" # hcutoff 10000,
+        saturate 0.93 $ s "futuresub(7,16,2)" - note 30,
+        chop 8 $ loopAt 4 $ s "noisebuild" # hcutoff 10000 * gain 0.8,
+        chl 16 4 $ s "f1fall" * gain 0.9 # hcutoff 10000,
+        isoe 7 17 8 $ s "f1lead:2" # hcutoff 600 - note (30-24) + note "[0,3,7]"
+        ]
+
+-----------NOIZ-------------
+
+do
+  jump 1 $ stack [
+    whenmodr [1,(1/2),(1/4),(1/8)] [4] [3] ((* release 0.5).(+ coarse 2).(* speed 1.1))
+      $ chl 16 1 $ s "pindust_loop" * release 0.7 ,
+    isoe 5 13 16 $ s "kick" * gain 0.9 # orbit 1,
+    isoe 3 10 8 $ s "varbass:8" * gain 0.8 # legato 1 * accelerate "<0.5 -0.1 0.2 -0.4>*1.5"
+    ]
+
+------------WEIRDNB-------------
+
+d1
+  $ saturate 0.6
+  -- $ efx 10 13 8 (id) (const $ s "varbass:8*8" * gain 0.85 # legato 1)
+  -- $ efx 5 17 16 (* speed "-1") (id)
+  -- $ efx 0 13 8 (id) (+ coarse 2)
+  -- $ whenmodr [1,0.5,0.25] [4] [3] ((* speed "2").(+ hcutoff 100))
+  -- $ whenmods [0.25,0.125,(1/16)] [8] [7] (s "kick*16" |+ speed (range 1 16 saw))
+  $ stack [
+  stut' 3 ("<-1 2 1 -1 -2 1 2>*1.5"/16) ((+ hcutoff 150).(* speed 1.5)) $ isoe 5 13 4 $ s "kick" # orbit 1,
+  s "f1snare:1(2,4,1)" # orbit 1,
+  s "sonhh:1*8" # hcutoff 9000,
+  unison''' $ s "varbass:6(5,8)" # legato 1 * accelerate "<1 0 0.1 -0.5 0>*2.5" * gain 0.7,
+  saturate 0.99 $ s "futuresub(7,16,2)" - n "[24,36]" * gain 1.1,
+  chl 16 4 $ s "f1fall" * gain 0.9 # hcutoff 10000
+  ]
+
+------------EDNBGLITCH------------
+
+do
+  let mess = ((stut' 3 (-1/4) ((* speed 2).(* release 0.1).(+ hcutoff 2000).(* gain 0.8))).(* speed "1.5"))
+  d1 $ every 0 (inside 1 (whenmodr [2,1,0.5,0.25] [4] [3] ((linger' (ecount 2 8 [1,5,4]) ("<4>"/32)).(+ hcutoff 80).(* speed 2))))
+    $ solos ["f1fall","varbass","sonhh","f1snare","futuresub","kick"] $ whenmodr [(1/4),(1/8)] [8] [7] mess $ stack [
+      n "[0 ~ ~ ~ ~ 0 ~ ~]" # s "kick" # orbit 1,
+      s "f1snare:1(2,4,1)" # orbit 1,
+      s "sonhh:1(8,8)" * gain 0.9 ,
+      saturate 0.99 $ inside 2 (whenmod 4 3 (const $ slow (24/4) $ n (run 23) # s "varbass" * gain 0.72 # legato 1 )) $ s "futuresub(7,16,2)" - note 30,
+      chl 32 4 $ "f1fall" # hcutoff 9000
+      ] + hcutoff 10
+
+---------NUDSCO------------
+
+do
+  let prog = "<0 0 5 -5>/2"
+  jump 1
+    -- $ whenmodr [2,1,0.5,0.25] [4] [3] ((|+ cutoff (range 200 5000 $ slow 1 $ saw)).(# resonance 0.1))
+    $ stack [
+    s "[kick*4, f1snare:0(2,4,1)]" # orbit 1,
+    chl 8 1 $ s "f1loop:1",
+    s "sonhh:1(4,8,1)" # hcutoff 9000,
+    saturate 0.93 $ s " [~ futuresub]*4" - note 30 + note prog,
+    s "flutter" + (note "[0,3,7,10]*16" - note (30-36) + note prog) # hcutoff 1200 * gain 0.95 # legato 1.5
+    ]
+
+------------WEIRD------------
+
+xfadeIn (1/4) 1
+  $ stack [
+      s "kick(3,16)" # orbit 1 * gain 1 * release 0.3,
+      whenmodr [2,1,0.5,0.25] [4] [3] ((fast 2).(* release 0.6).(+ coarse 3))
+        $ slow 4 $ chl 16 2
+        $ s "pindust_loop" |+ n "<0 4 2 3 5>*1.5" * release 1 * gain 1.1,
+      every 2 (foldEvery [3,4,5,6] ((1/8) <~)) $ chl 16 1 $ s "f1break:4" * release 0.1 * gain 1.05,
+      s "futuresaw(11,16,2)" * release 4 + note "[0,3,7,10]" * gain 0.8 # hcutoff 1000,
+      saturate 0.95 $ s "futuresub(7,16,2)" - note 36 * gain 1.1]
+
+
+----------------------------
+
+d1 $ every 0 (solos ["f1break","kick","sonhh"])
+    $ stack [
+        efx 6 13 8 id rip
+        $ whenmodr [2,1,1/2,1/4,1/8] [13] [10] (+ n 1)
+        $ whenmodr [1,0.5,0.25,0.125,1/16] [13] [11] (spreadf [rip, focus (0/13) (3/13),(* speed 0.5),(* speed "-1")]) $ seqslice 8 5 13 [1] "f1break:1" # orbit 1,
+        saturate 0.99 $ s "kick(5,13)" # orbit 1,
+        s "f1snare:1(2,13,3)" # orbit 1,
+        s "sonhh:1*13" # hcutoff 10000 * gain 0.8
+        ] * gain 0.8
+
+----------------------------
+
+d1 $ inside 2 (whenmod 8 7 ((+ hcutoff 1500).(* speed "-1"))) $ stack [
+  s "jstkick(3,8)" * release 1 # orbit 1,
+  s "hh*16" ,
+  s "[~ jstsn:5]*2" # orbit 1,
+  chl 16 2 $ s "rec1" * speed 0.5 # cutoff 1500
+  ]
+
+----------------------------
+
+do
+  d1 $ stack [
+    s "jstkick:0*4" * release 1 # orbit 1,
+    "[~ jstsn:5]" # orbit 1,
+    whenmodr [1,0.5,0.25] [4] [3] ((* speed 2).(fast 2)) $ "[hh*8]" * speed 2,
+    isoe 7 13 4 $ s "plucklead" - n 24 + n key ,
+    isoe 13 17 8 $ s "plucklead" + n keys * gain 0.85,
+    stut 4 0.5 (3/16) $ isoe 8 10 16 $ s "plucklead" + n key'' + n 24 * gain 0.8
+    ]
+
+----------------------------
+
+d1 $ stack [
+  s "[jstkick:1*4,[~ jstsn:5]*2,hh*8]" # orbit 1,
+  whenmodr [1,0.5] [8] [7] (fast 2) $ whenmods [0.5,0.25,1/8] [8] [7] (s "donk*8" ) $ n (run 8) + s "varbass" + note key # legato 1 * gain 0.9,
+  n "[~ 0]*4" |+ s "vibsawpluck" + note keys ,
+  slow 8 $ s "noisebuild"
+  ]
+
+----------------------------
+
+d1  $ overlay (s "[jstkick*4,[~ jstsn:4]*2,[~ hh]*4]" * hold 0.15 * gain 1.1 * release 0.01)
+    $ fast 2 $ n (karp "[0 1 2 0 1 2 1 2]") |+ s "[plucklead]" |+ legato 4
+
+----------------------------
+
+do
+  let a = sometimes (inside 4 (every 4 ((stut 4 0.5 ("<1 2 1 4 1>*1.5"/32)).(zoom (0.25,0.75)).(* speed 1.1))))
+        $ (* gain 0.8)
+        $ every 0 (solos ["jstrim"])
+        $ overlay (stut' 8 (-2/32) ((|+ attack (rangex 0.001 0.5 $ slow 4 $ saw)).(+ hcutoff 1000).(* speed 0.9).(* release 0.4)) $ s "jstrim:4(5,16,0)" * attack 0.02 * release 1 * gain 1.05 * accelerate "1" )
+        $ overlay (s "sonhh:2(4,8,1)" * gain 0.8 # hcutoff 11000 )
+        $ superimpose ((* gain 1.1).(# shape 0.8).(# hcutoff 150))
+        $ s "jstkick*4" # legato 1 * gain 0.85 # orbit 1
+  d1
+    $ overlay (stut 4 0.4 (3/16) $ s "donk(3,8)" # hcutoff 800 + n "[15,36,<27 26 25 24>]" * gain 0.7 )
+    $ a + hcutoff 10
+
+----------------------------
+
+d1
+  $ overlay (stut' 4 (1/16) ((* legato 0.5).(+ n 12)) $ s "[~ donk]*4" + n key)
+  $ overlay (s "jstkick(4,4)" * release 1 # orbit 1)
+  $ isoe 13 20 8 $ s "vibsawpluck" + n keys # legato 1.5 * gain 0.0
+
+----------------------------
+
+do
+  bpm 130
+  d1 $ fast 2 $ every 4 (overlay (s "sonhh*16" |+ gain (range 0.5 1 $ fast 2 $ saw))) $ s "jstkick" # orbit 1
+
+----------------------------
+
+do
+  bpm 90
+  d1 $ slow 1 $ whenmods [(1/2),(1/4),(1/8),(1/16)] [8] [7] (stut' 8 ("<1 -1 1 -1 1>*2"/64) (((# shape 0.3)).(+ speed 3).(+ hcutoff 400)) $ s "jstkick*8" * release 0.3) $ every 0 (solo' "jstkick") $ stack [
+    saturate 0.95 $ stut' 3 (-1/16) ((+ hcutoff 150).(* speed 1.5).(+ coarse 5)) $ isoe 5 13 16 $ s "jstkick" * hold (3/40) * release 0.05 * gain 0.8 # orbit 1,
+    s "sonhh*16" ,
+    focus (0/8) (3/8) $ saturate 0.95 $ chop 16 $ loopAt 1 $ s "f1break:3" # hcutoff 1500 * release 0.1 * gain 1.3 # cutoff 3000]
+
+----------GR8GLITCH------------
+
+do
+  bpm 115
+  let a = saturate 0.65 $ whenmodr [2,1,0.5,0.25] [4] [3] ((+ coarse 4).(* speed 0.5).(* hold 0.5))
+            $ chop 16
+            $ loopAt 1
+            $ s "pindust_loop" * release 0.01 * hold 0.34
+  let b = isoe 7 18 8 $ s "jstkick" * hold 0.1 * release 0.01 # orbit 1
+  let c = superimpose ((# hcutoff 3000).(# shape 0.99)) $ fast "<4 2 8 16>*1.5" $ s "jstkick" # legato 0.75 # cutoff (range 200 10000 $ slow 11 $ cosine)
+  let reese = s "varbass:8" |* speed "[1,2.05,3.95]" |+ legato ("[4 1 15 2 1 8]*1.75"/16) * gain 0.7 |* accelerate "<1 -0.1 0 -1 0.5 0>*1.25" # hcutoff 200
+  let mess p = whenmodr [4,2,1,0.5,0.25] [8] [7] ((* speed (5/4)).(+ coarse 2).(* hold 0.5).((1/4) <~)) $ p
+  let mess' p = efx 5 13 8 (stut 4 0.5 ("<1 8 2 4 0.5>*1.25"/64)) (# cutoff (range 1000 10000 $ cosine)) $ p
+  d1 $ whenmod 4 2 (inside 2 (mess)) $ mess' $ whenmods [(1/4),(1/8),(1/16)] [16] [15] (c) $ mess $ stack [a,b,reese] # resonance 0.2
+
+----------------------------
+
+d1 $ foldEvery [2,3,4] ((1/8) <~) $ stack [s "[jstkick:1*2,[~ jstsn:13]]" * release 1, chop 32 $ loopAt 1 $ s "rec1" * gain (1.1*1) * speed "[0.5,0.52,0.48,0.54,0.46]" * release 0.5 * attack 0.1]
+
+----------------------------
+
+do
+  bpm 130
+  d1 $ every 4 (linger' 0 ("<1 0.25 2 0.5>*1.25"/4)) $ every 8 ((# hcutoff 1500).(solo' "rec0")) $ stack [s "[jstkick*4 ,[~ sonhh:1]*4]" * release 1 * gain 1,superimpose ((* speed 16).(* gain 0.7).(# hcutoff 3000).(# cutoff 3000)) $ chop 16 $ s "[rec0,rec1]" * gain 1.5 * speed "[0.5]" # cutoff 1500 * release 0.1] # cutoff 4000
+
+---------BOOMCLK-----------
+
+do
+  bpm 130
+  let prog = invert 0 12 $ (inside 2 (whenmod 8 7 (+ (3))) $ slow 8 $ ("[0 7 10 5 8 3 5 1]") + "[0,3,7,10,14]")
+  let kick = whenmodr [2,1,0.5,0.25] [4] [3] ((* release 0.5).((1/4) <~).(+ hcutoff 60).(stut' 3 ("<1 4 2 0.5>*0.75"/4) ((* release 0.95).(* gain 0.9).(+ hcutoff 30).(* speed 1.1)))) $ isoe 5 13 8 $ s "jstkick" # release 0.4 # orbit 1
+  let snare = superimpose ((# cutoff 10000)) $ "[~ jstsn:5]*2" * gain 0.85 # orbit 1
+  let hh = stut' 4 (1/4) ((* gain 0.8).(* speed 0.7)) $ isoe 11 17 16 $ s "sonhh" * gain 0.7 # hcutoff 11000
+  let bass = isoe 14 24 8 $ s "plucklead" * legato 3 * gain 0.85 - n 24
+  let strct p = whenmodr [1,0.5,0.25,0.125] [16] [15] ((superimpose $ (const $ saturate 0.97 $ s "jstkick" * release 0.6)).(# hcutoff 500).(* release 0.3).(* accelerate "-2").(* speed 2)) $ p
+  let chords = s "plucklead(8,8)" * gain 0.62 * legato 3
+  let clap = s "<[~ ~ ~ f1clap:1*2] ~ [~ ~ ~ f1clap:1*4] ~ [f1clap:1*8] ~ [~ f1clap:1]*4 ~>" * gain 0.65
+  let a = strct $ stack [kick,snare,hh,clap,bass |+ n (mono prog),chords |+ n prog]
+  d1
+    $ whenmod 8 8 ((solos ["plucklead","jstkick"]).(# cutoff (range 200 1000 $ slow 4 $ cosine)))
+    $ whenmod 8 8 ((solos ["plucklead"]).(# hcutoff 1000))
+    $ a * 0.95
+
+-----IT GETS WEIRD FROM HERE------
+
+do
+  setcps (110/240)
+  let breaks = slitch' 8 "f1break:5" $ cseq $ seqe [1,2,3] $ en 5 11
+  let bd = s "jstkick:2(4,11)" * gain 0.9 # orbit 1
+  let sn = stut 2 0.3 (-1/64) $ s "f1clap:3(2,11,2)" * gain 0.65 # orbit 1
+  let bass = whenmodr [(1/8),(1/4),(1/2),1] [13] [10] (|+ note "[5 0 -5]") $ s "varbass:16(6,13,2)" * gain 0.6 + begin ("[0 2 1 3]"/20) # legato 1 * speed "[0.25,1,2,4]" # cutoff (range 2000 15500 $ slow 0.283 sine) # hcutoff (range 10 500 $ slow 1.345 sine)
+  d1 $ inside (13/4) (whenmod 13 12 (const $ s "varbass:16(8,8)" # legato 1 * gain 0.7 # attack 0.1)) $ whenmodr [(1/8),(1/4),(1/2),1] [13] [10] ((+ hcutoff 200).(* release 0.7)) $ inside 2 (foldEvery [4,5,6] (((2/13) <~).(* legato 0.7))) $ stack [breaks, bd, sn, bass]
+
+----------------------------
+
+do
+  setcps (140/240)
+  let mess p = hack (fastFromList $ cseq $ seqe [1,7,3,4] $ en 5 10) 10 $ (* release 0.4) $ stut 2 0.2 (-1/4) $ p
+  let mess' p = whenmodr [1,0.5,2] [10] [7] ((* speed 1.1).(* release 0.4)) $ p
+  let perc = foldEvery [3,4,5] mess $ mess' $ s "drum*10" # (n $ fastFromList $ eheir [3,5,7,10]) # release 10 # orbit 1
+  let bass = stut' 6 (-1/10) ((+ hcutoff 1200).(+ n 12)) $ mess $ whenmodr [0.5,0.25,0.125] [10] [8] ((|+ n 1)) $ s "[plucklead(5,10,0),donk(3,10,2)]" * release 0.5 # legato 4 - n 2
+  d1 $ stack [perc * gain 1,bass # cutoff 400]
+
+----------------------------
+
+do
+  setcps (140/240)
+  let a = epat 13 19 4 (loopAt 1 $ chop 16 $ s "pchords_loop:1") (loopAt 1 $ chop 16 $ s "pchords_loop:3")
+  let b = epat 11 13 4 (loopAt 1 $ chop 16 $ s "pgrowl_loop" + n "<0 1 2 7>") (loopAt 1 $ chop 16 $ s "pindust_loop" * gain 1.15)
+  let c = epat 14 17 8 (loopAt 1 $ chop 16 $ s "pdrums_loop") (loopAt 0.25 $ chop 16 $ s "pdrums_fill:2") # orbit 1
+  d1 $ stack [a # hcutoff 700 * speed "<1 1 1 0.25>",b * gain 1,c * gain 1] * gain 0.9
+
+----------------------------
+
+do
+  setcps (150/240)
+  d1
+    $ whenmodr [0.5,2,1] [2] [1] (efx 5 13 4 ((* coarse 3).(* release 0.5)) ((stut 4 0.5 ("<1 4 2 16 8 4>*0.75"/64)).(+ hcutoff 80)))
+    $ epat 9 17 8 (loopAt 1 $ chop 16 $ "breaks165" # legato 1) (s "[bd*2,[~ sn:1],[~ hh]*2]*2")
+
+----------------------------
+
+do
+  setcps (155/240)
+  let a = hack (fastCat $ eheir [1,3,5,7,8]) 8 $ chop 8 $ loopAt 1 $ s "f1break:7" * release 0.4
+  let b = (* legato (euclidFull 11 16 "1" "0.5")) $ whenmodr [1,0.5,0.25,0.125] [8] [7] ((* speed "-1").(* release 0.5).(focus (6/8) (8/8))) $ n (toScale [0,2,3,5,7,8,10] (fastCat $ eheir [1,2,5,7,9,12,16])) + s "drum" * release 0.6
+  let c = euclidFull 2 3 a b
+  d1 $ slow 3 $ c
+
+----------------------------
+
+{- NOTES
+X swap orbits 1 and 0 so that I have to do less typing
+* quick named messup effects that sound magically good
+ * rip
+ * shuf
+ * retrig
+ * accel
+ * swuph c, swdownh c, swupl c, swdown c
+* a few "panic" preprogrammed rhythms
+  * housep
+  * dnbp
+* a few "panic" preprogrammed melodies
+  * offbeat pluck chord
+  * hardcore sub
+  * offbeat donk
+  * electro sub
+  * electro bass
+* some named sounds (like give a name to "varbass:8" like pewpew)
+* rhythm templates for different genres that take a bd, sn, hh
+* cheat sheet for commonly used helpers
+* use select and selectF with bjork heirarchy
+-}
